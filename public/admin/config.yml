@@ -1,3 +1,4 @@
+# dieSGEimHerzen CMS config
 backend:
   name: github
   repo: marcelfonsecasantana-art/diesgeimherzen
