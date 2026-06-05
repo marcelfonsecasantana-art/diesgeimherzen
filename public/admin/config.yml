@@ -1,4 +1,19 @@
-backend: {name: github, repo: marcelfonsecasantana-art/diesgeimherzen, branch: main, auth_type: implicit, app_id: Ov23lid3USY2SoZPt0Qg}
+backend:
+  name: git-gateway
+  branch: main
 media_folder: public/bilder
 public_folder: /bilder
-collections: [{name: artikel, label: Artikel, folder: src/content/artikel, create: true, slug: "{{slug}}", fields: [{label: Titel, name: titel, widget: string}, {label: Datum, name: datum, widget: datetime, format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false}, {label: Autor, name: autor, widget: string}, {label: Kategorie, name: kategorie, widget: select, options: [Aktuell, Spielbericht, Transfers, Interview, Meinung, Frauen]}, {label: Kurzbeschreibung, name: beschreibung, widget: string}, {label: Aufmacher, name: aufmacher, widget: boolean, default: false}, {label: Inhalt, name: body, widget: markdown}]}]
+collections:
+  - name: artikel
+    label: Artikel
+    folder: src/content/artikel
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: Titel, name: titel, widget: string}
+      - {label: Datum, name: datum, widget: datetime, format: "YYYY-MM-DD", date_format: "DD.MM.YYYY", time_format: false}
+      - {label: Autor, name: autor, widget: string}
+      - {label: Kategorie, name: kategorie, widget: select, options: [Aktuell, Spielbericht, Transfers, Interview, Meinung, Frauen]}
+      - {label: Kurzbeschreibung, name: beschreibung, widget: string}
+      - {label: Aufmacher, name: aufmacher, widget: boolean, default: false}
+      - {label: Inhalt, name: body, widget: markdown}
