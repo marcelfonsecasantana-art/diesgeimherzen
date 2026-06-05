@@ -1,11 +1,210 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// dieSGEimHerzen – Startseite
 ---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dieSGEimHerzen – inoffizielles Eintracht-Magazin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+--black:#0a0a0c; --ink:#17171c; --red:#e30613; --red-d:#a8040f;
+--paper:#f3f1ec; --card:#fff; --muted:#8b8b94; --line-l:#e2dfd7; --line-d:#2a2a33;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.anton{font-family:'Anton',sans-serif}
+.topbar{background:var(--red);color:#fff;text-align:center;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:6px}
+header{background:var(--black);color:#fff;position:sticky;top:0;z-index:30;border-bottom:3px solid var(--red)}
+.nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:40px;height:40px;flex:none}
+.wordmark{font-family:'Anton',sans-serif;font-size:25px;letter-spacing:.02em}
+.wordmark .d{color:#fff;opacity:.92}
+.wordmark .s{color:var(--red)}
+.tagline{display:block;font-family:'Oswald',sans-serif;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:1px}
+nav.links{display:flex;gap:22px}
+nav.links a{font-family:'Oswald',sans-serif;font-weight:600;font-size:13.5px;letter-spacing:.05em;text-transform:uppercase;color:#e9e9ee;padding:4px 0;border-bottom:2px solid transparent;transition:.18s;white-space:nowrap}
+nav.links a:hover,nav.links a.on{color:#fff;border-color:var(--red)}
+@media(max-width:860px){nav.links{display:none}}
+.lead{background:var(--black);color:#fff;position:relative;overflow:hidden}
+.lead::after{content:"";position:absolute;right:-140px;top:-80px;width:560px;height:560px;background:radial-gradient(circle,rgba(227,6,19,.30),transparent 62%);pointer-events:none}
+.lead-in{max-width:1180px;margin:0 auto;padding:54px 22px 60px;position:relative;z-index:1}
+.cat{display:inline-block;background:var(--red);color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 11px}
+.lead h1{font-family:'Anton',sans-serif;font-size:clamp(2.2rem,6vw,4rem);line-height:.95;text-transform:uppercase;margin:18px 0 14px;max-width:20ch}
+.lead p{color:#c9c9d2;font-size:clamp(1rem,2vw,1.15rem);max-width:60ch}
+.lead .byline{margin-top:18px;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.04em;color:#9a9aa3;text-transform:uppercase}
+.lead .byline b{color:#fff}
+.layout{max-width:1180px;margin:0 auto;padding:50px 22px 40px;display:grid;grid-template-columns:1fr 320px;gap:40px}
+@media(max-width:860px){.layout{grid-template-columns:1fr;gap:30px}}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:3px solid var(--ink);padding-bottom:10px;margin-bottom:8px}
+.sec-head h2{font-family:'Anton',sans-serif;font-size:1.7rem;text-transform:uppercase;letter-spacing:.02em}
+.sec-head h2 span{color:var(--red)}
+.note{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-l);opacity:0;transform:translateY(12px);animation:rise .5s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.rthumb{width:120px;height:84px;flex:none;position:relative;overflow:hidden}
+.rthumb.r{background:linear-gradient(135deg,var(--red-d),var(--red))}
+.rthumb.k{background:linear-gradient(135deg,#1d1d24,#34343f)}
+.rthumb .c{position:absolute;left:0;top:0;background:rgba(0,0,0,.45);color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px}
+.row h3{font-family:'Oswald',sans-serif;font-weight:700;font-size:1.18rem;line-height:1.15;margin-bottom:7px}
+.row h3 a:hover{color:var(--red)}
+.byl{font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.03em;color:var(--muted);text-transform:uppercase;display:flex;gap:8px;flex-wrap:wrap}
+.byl b{color:var(--ink)}
+.byl .cm{color:var(--red)}
+aside{display:flex;flex-direction:column;gap:26px}
+.widget{background:var(--card);border:1px solid var(--line-l)}
+.wh{background:var(--ink);color:#fff;font-family:'Oswald',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:11px 16px}
+.wh span{color:var(--red)}
+.match{padding:20px 16px;text-align:center}
+.match .teams{display:flex;align-items:center;justify-content:center;gap:14px;font-family:'Anton',sans-serif;font-size:1.15rem}
+.match .teams .vs{color:var(--red);font-size:.85rem}
+.badge{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;color:#fff;font-size:14px;margin:0 auto 6px}
+.badge.home{background:var(--red)} .badge.away{background:#3a3a46}
+.match .when{margin-top:14px;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.05em;color:#55555f;text-transform:uppercase}
+.match .demo{margin-top:8px;font-size:11px;color:var(--muted)}
+.rank{list-style:none}
+.rank li{display:flex;gap:12px;padding:12px 16px;border-top:1px solid var(--line-l);align-items:flex-start}
+.rank li:first-child{border-top:none}
+.rank .num{font-family:'Anton',sans-serif;color:var(--red);font-size:1.3rem;line-height:1}
+.rank a{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;line-height:1.2}
+.rank a:hover{color:var(--red)}
+.rank .cc{display:block;font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+.comments{background:var(--ink);color:#fff}
+.cw{max-width:1180px;margin:0 auto;padding:50px 22px 56px}
+.cw .sec-head{border-color:var(--line-d)} .cw .sec-head h2{color:#fff}
+.cmt{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line-d)}
+.av{width:42px;height:42px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:18px;color:#fff;background:var(--red)}
+.av.alt{background:#3a3a46}
+.cmt strong{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px}
+.cmt .t{font-size:11px;color:var(--muted);margin-left:8px;font-family:'Oswald',sans-serif;letter-spacing:.05em;text-transform:uppercase}
+.cmt p{margin-top:5px;color:#c9c9d2;font-size:14.5px}
+.cbox{margin-top:22px;background:#101015;border:1px dashed #3a3a46;border-radius:10px;padding:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.cbox span{color:#b9b9c4;font-size:14px}
+.cbox .soon{font-family:'Oswald',sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--black);background:#fff;padding:6px 12px;border-radius:100px}
+footer{background:var(--black);color:#fff;border-top:3px solid var(--red)}
+.foot{max-width:1180px;margin:0 auto;padding:38px 22px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.disc{font-size:12px;color:var(--muted);max-width:48ch;line-height:1.6}
+</style>
+</head>
+<body>
 
-<Layout>
-	<Welcome />
-</Layout>
+<div class="topbar">🦅 Das inoffizielle Fan-Magazin · von Fans, für Fans</div>
+
+<header>
+<div class="nav">
+<a class="brand" href="#">
+<svg class="mark" viewBox="0 0 100 100" aria-hidden="true">
+<circle cx="50" cy="50" r="48" fill="#e30613"/><circle cx="50" cy="50" r="40" fill="#0a0a0c"/>
+<path d="M50 30 L30 52 L42 52 L42 44 L50 50 L58 44 L58 52 L70 52 Z" fill="#fff"/>
+<path d="M50 44 L36 58 L46 58 L46 70 L54 70 L54 58 L64 58 Z" fill="#e30613"/>
+</svg>
+<span><span class="wordmark"><span class="d">die</span><span class="s">SGE</span><span class="d">imHerzen</span></span><span class="tagline">inoffizielles Fan-Magazin</span></span>
+</a>
+<nav class="links">
+<a href="#" class="on">Aktuell</a>
+<a href="#feed">Spielberichte</a>
+<a href="#feed">Transfers</a>
+<a href="#feed">Interviews</a>
+<a href="#feed">Meinung</a>
+<a href="#kommentare">Fankurve</a>
+</nav>
+</div>
+</header>
+
+<div class="lead">
+<div class="lead-in">
+<span class="cat">Aufmacher · Saison-Rückblick</span>
+<h1>Ein Jahr zwischen Euphorie und Ernüchterung</h1>
+<p>Höhenflüge, Durststrecken und ganz viel Herzblut: Was von dieser Spielzeit am Main wirklich hängen bleibt – und worauf es jetzt ankommt. Ein persönlicher Rückblick aus der Kurve.</p>
+<div class="byline">von <b>der Redaktion</b> · vor 3 Stunden · 💬 24 Kommentare</div>
+</div>
+</div>
+
+<div class="layout">
+<main>
+<div class="sec-head">
+<h2>Neueste <span>Artikel</span></h2>
+<span class="note">Beispiel-Inhalte</span>
+</div>
+
+<article class="row" style="animation-delay:0ms">
+<div class="rthumb k"><span class="c">Transfers</span></div>
+<div><h3><a href="#">Transfer-Ticker: Diese Gerüchte sortieren wir für euch ein</a></h3>
+<div class="byl"><span>von <b>Mainufer09</b></span><span>· vor 6 Std.</span><span class="cm">· 💬 17</span></div></div>
+</article>
+
+<article class="row" style="animation-delay:70ms">
+<div class="rthumb r"><span class="c">Spielbericht</span></div>
+<div><h3><a href="#">Kampf bis zur letzten Minute: So lief das Heimspiel</a></h3>
+<div class="byl"><span>von <b>AdlerTobi</b></span><span>· vor 1 Tag</span><span class="cm">· 💬 31</span></div></div>
+</article>
+
+<article class="row" style="animation-delay:140ms">
+<div class="rthumb k"><span class="c">Interview</span></div>
+<div><h3><a href="#">„Diese Kurve ist mein Wohnzimmer" – wir sprechen mit einem Dauerkartenbesitzer</a></h3>
+<div class="byl"><span>von <b>der Redaktion</b></span><span>· vor 2 Tagen</span><span class="cm">· 💬 9</span></div></div>
+</article>
+
+<article class="row" style="animation-delay:210ms">
+<div class="rthumb r"><span class="c">Meinung</span></div>
+<div><h3><a href="#">Warum Geduld beim Neuaufbau jetzt unsere größte Stärke sein muss</a></h3>
+<div class="byl"><span>von <b>SandraSGE</b></span><span>· vor 3 Tagen</span><span class="cm">· 💬 42</span></div></div>
+</article>
+
+<article class="row" style="animation-delay:280ms">
+<div class="rthumb k"><span class="c">Frauen</span></div>
+<div><h3><a href="#">Aufbruchstimmung beim Frauen-Team: Vorschau auf die neue Spielzeit</a></h3>
+<div class="byl"><span>von <b>Mainufer09</b></span><span>· vor 4 Tagen</span><span class="cm">· 💬 5</span></div></div>
+</article>
+</main>
+
+<aside>
+<div class="widget">
+<div class="wh">Nächstes <span>Spiel</span></div>
+<div class="match">
+<div class="teams">
+<div><div class="badge home">SGE</div>dieSGE</div>
+<span class="vs">vs.</span>
+<div><div class="badge away">GEG</div>Gegner</div>
+</div>
+<div class="when">Sa · 15:30 Uhr · Heimspiel</div>
+<div class="demo">Beispiel-Daten · später per Live-Anbindung</div>
+</div>
+</div>
+
+<div class="widget">
+<div class="wh">Meist<span>kommentiert</span></div>
+<ol class="rank">
+<li><span class="num">1</span><div><a href="#">Warum Geduld beim Neuaufbau jetzt zählt</a><span class="cc">💬 42 Kommentare</span></div></li>
+<li><span class="num">2</span><div><a href="#">Kampf bis zur letzten Minute am Main</a><span class="cc">💬 31 Kommentare</span></div></li>
+<li><span class="num">3</span><div><a href="#">Ein Jahr zwischen Euphorie und Ernüchterung</a><span class="cc">💬 24 Kommentare</span></div></li>
+</ol>
+</div>
+</aside>
+</div>
+
+<div class="comments" id="kommentare">
+<div class="cw">
+<div class="sec-head"><h2>Aus der <span>Fankurve</span></h2></div>
+<div class="cmt"><div class="av">M</div><div><strong>Markus_1899</strong><span class="t">vor 1 Std.</span><p>Endlich ein Fan-Magazin, das eigene Meinungen schreibt und nicht nur Meldungen kopiert. Weiter so!</p></div></div>
+<div class="cmt"><div class="av alt">A</div><div><strong>AdlerAnna</strong><span class="t">vor 3 Std.</span><p>Der Saison-Rückblick trifft es genau. Bin gespannt, wie ihr die neue Spielzeit begleitet. 🦅</p></div></div>
+<div class="cbox"><span>💬 Bald könnt ihr unter jedem Artikel selbst mitdiskutieren.</span><span class="soon">Phase 3 · in Arbeit</span></div>
+</div>
+</div>
+
+<footer>
+<div class="foot">
+<span><span class="wordmark" style="font-size:20px"><span class="d">die</span><span class="s">SGE</span><span class="d">imHerzen</span></span><span class="tagline">inoffizielles Fan-Magazin</span></span>
+<p class="disc">Privates Fan-Projekt. Keine offizielle Verbindung zu Eintracht Frankfurt e.&nbsp;V. oder der Eintracht Frankfurt Fußball AG. Alle Inhalte sind eigene Texte und Meinungen, keine Übernahmen von anderen Seiten.</p>
+</div>
+</footer>
+
+</body>
+</html>
